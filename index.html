@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Page Title</title>
     <!-- CSS Stylesheets -->
-    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <link rel="stylesheet" href="css/styles.css" />
     <!-- Optional: Font Awesome for icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+    <script
+      src="https://unpkg.com/@inkeep/widgets-embed@0.2.265/dist/embed.js"
+      type="module"
+      defer
+    ></script>
+    <script src="js/addInkeep.js" type="module" defer></script>
   </head>
   <body>
     <header>
@@ -48,13 +54,11 @@
         <h2>Contact Us</h2>
         <p>Contact information and form go here.</p>
       </section>
+      <button id="inkeepButton">Open Modal</button>
     </main>
 
     <footer>
       <p>&copy; 2024 Your Website</p>
     </footer>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
   </body>
 </html>
