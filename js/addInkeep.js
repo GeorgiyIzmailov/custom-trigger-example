@@ -1,33 +1,50 @@
+// Get the button element
 const inkeepButton = document.getElementById("inkeepButton");
 
+// Create a new div element to hold the Inkeep modal and set its id and position
 const inkeepDiv = document.createElement("div");
 inkeepDiv.id = "inkeepModal";
-inkeepDiv.style.position = 'absolute';
+inkeepDiv.style.position = "absolute";
 document.body.appendChild(inkeepDiv);
 
-// Embed the widget using the `Inkeep.embed()` function.
+const handleClose = () => {
+  inkeepWidget.render({
+    ...config,
+    isOpen: false,
+  });
+};
+
+const handleOpen = () => {
+  inkeepWidget.render({
+    ...config,
+    isOpen: true,
+  });
+}
+
 const config = {
-  componentType: "CustomTrigger",
-  targetElement: inkeepDiv,
+  componentType: "CustomTrigger", // required
+  targetElement: inkeepDiv, // required
   properties: {
-    onClose: undefined,
+    isOpen: false, // required
+    onClose: handleClose, // required
     onOpen: undefined,
     baseSettings: {
-      apiKey: "YOUR_API_KEY",
-      integrationId: "YOUR_INTEGRATION_ID",
-      organizationId: "YOUR_ORGANIZATION_ID",
-      primaryBrandColor: "#26D6FF", // your brand color, the widget color scheme is derived from this
+      apiKey: "YOUR_API_KEY", // required
+      integrationId: "YOUR_INTEGRATION_ID", // required
+      organizationId: "YOUR_ORGANIZATION_ID", // required
+      primaryBrandColor: "#26D6FF",
       organizationDisplayName: "Inkeep",
-      // ...optional settings
+      //... optional base settings
     },
     modalSettings: {
-      // optional settings
+      // optional InkeepModalSettings
     },
     searchSettings: {
-      // optional settings
+      // optional InkeepSearchSettings
     },
     aiChatSettings: {
-      // optional settings
+      // optional InkeepAIChatSettings
+      // botAvatarSrcUrl: "/img/inkeep-logo.svg",
       quickQuestions: [
         "Example question 1?",
         "Example question 2?",
@@ -37,18 +54,8 @@ const config = {
   },
 };
 
+// Embed the widget using the `Inkeep.embed()` function.
 const inkeepWidget = Inkeep().embed(config);
 
-inkeepButton.addEventListener("click", () => {
-  inkeepWidget.render({
-    isOpen: true,
-    ...config,
-  });
-});
-
-inkeepButton.addEventListener("mouseup", () => {
-  inkeepWidget.render({
-    isOpen: false,
-    ...config,
-  });
-});
+// Add event listener to open the Inkeep modal when the button is clicked
+inkeepButton.addEventListener("click", handleOpen);
